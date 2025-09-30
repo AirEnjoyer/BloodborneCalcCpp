@@ -194,15 +194,53 @@ void calcDamage(const Weapon *w, int weaponLevel, int userStr, int userSkill,
                      arcDamage * transformedHolyGSwordTransformArc
               << std::endl;
   } else {
-    std::cout << "R1: " << w->r1 << "R2: " << w->tapR2
-              << "Charged R2: " << w->chargeR2
-              << "Transform Attack: " << w->regTransformAttack
-              << "Transformed R1: " << w->transformedR1
-              << "Transformed Tap R2: " << w->transformedTapR2
-              << "Transformed Charged R2: "
-              << (w->transformedChargeR2 * 1.8) +
-                     pow((w->transformedChargeR2 * 0.3), 3)
-              << "L2: " << w->l2 << "Transformed Transform Attack: "
-              << w->transformedTransformAttack;
+    std::cout << "R1: "
+              << (w->r1 * physDamage) + (w->r1 * arcDamage) +
+                     (w->r1 * bloodDamage)
+              << std::endl;
+    std::cout << "R2: "
+              << (w->tapR2 * physDamage) + (w->tapR2 * arcDamage) +
+                     (w->tapR2 * bloodDamage)
+              << std::endl;
+    std::cout << "Charged R2: "
+              << (w->chargeR2 * physDamage) + (w->chargeR2 * arcDamage) +
+                     (w->chargeR2 * bloodDamage)
+              << std::endl;
+    std::cout << "Transform Attack: "
+              << (w->regTransformAttack * physDamage) +
+                     (w->regTransformAttack * arcDamage) +
+                     (w->regTransformAttack * bloodDamage)
+              << std::endl;
+    std::cout << "Transformed R1: "
+              << (w->transformedR1 * physDamage) +
+                     (w->transformedR1 * arcDamage) +
+                     (w->transformedR1 * bloodDamage)
+              << std::endl;
+    std::cout << "Transformed Tap R2: "
+              << (w->transformedTapR2 * physDamage) +
+                     (w->transformedTapR2 * arcDamage) +
+                     (w->transformedTapR2 * bloodDamage)
+              << std::endl;
+    std::cout << "Transformed Charged R2: "
+              << (w->name == "Whirligig Saw"
+                      ? ((w->transformedChargeR2 * 1.8) +
+                         pow((w->transformedChargeR2 * 0.3), 3)) *
+                            physDamage
+                      : (w->transformedChargeR2 * physDamage) +
+                            (w->transformedChargeR2 * arcDamage) +
+                            (w->transformedChargeR2 * bloodDamage))
+              << std::endl;
+    std::cout << "L2: "
+              << (w->l2 * physDamage) + (w->l2 * arcDamage) +
+                     (w->l2 * bloodDamage)
+              << std::endl;
+    std::cout << "Transformed Transform Attack: "
+              << (w->transformedTransformAttack * physDamage) +
+                     (w->transformedTransformAttack * arcDamage) +
+                     (w->transformedTransformAttack * bloodDamage)
+              << std::endl
+              << std::flush;
+    std::string dummyInput;
+    std::getline(std::cin, dummyInput);
   }
 }
