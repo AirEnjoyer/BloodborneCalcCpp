@@ -117,7 +117,15 @@ void getVisceralDamage(int skill, int bloodLevel, float *initThrustDamage,
 
 void calcDamage(const Weapon *w, int weaponLevel, int userStr, int userSkill,
                 int userBloodtinge, int userArc, int bloodLevel) {
-  int effectiveLevel;
+  int effectiveLevel = 0;
+
+  if (weaponLevel <= 0) {
+    effectiveLevel = 1;
+  } else if (weaponLevel >= 10) {
+    effectiveLevel = 9;
+  } else {
+    effectiveLevel = weaponLevel;
+  }
 
   float strSat = getSat(userStr);
   float skillSat = getSat(userSkill);

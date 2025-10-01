@@ -1,0 +1,5 @@
+# ninja log v5
+2	164	1759349138932259731	build.ninja	2dab9b25cb7f9c7
+4	1988	1759349140950259731	CMakeFiles/BloodborneCalc.dir/weapon_data.cpp.o	fd4395ef33606016
+2	2255	1759349141220259731	CMakeFiles/BloodborneCalc.dir/main.cpp.o	bd9c27310a12ca9e
+6	2826	1759349141791259731	CMakeFiles/BloodborneCalc.dir/damage.cpp.o	31009982975d839b
