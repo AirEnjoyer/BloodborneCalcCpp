@@ -1,0 +1,12 @@
+# ninja log v6
+1019	1108	1759965166359377002	MyExecutable	64689435c5e515f4
+1038	1125	1759965196552158755	BloodborneCalc	14abb24ac0f82d5f
+0	1038	1759965195514132303	CMakeFiles/BloodborneCalc.dir/src/damage.cpp.o	81c59ff54363b012
+1	756	1759965195515735192	CMakeFiles/BloodborneCalc.dir/src/weapon_data.cpp.o	3d6146963aa8e6db
+0	1019	1759965165340350135	CMakeFiles/MyExecutable.dir/src/damage.cpp.o	824e42be4665d9ca
+0	586	1759965195515542432	CMakeFiles/BloodborneCalc.dir/src/main.cpp.o	26406c35e7eabd06
+1	792	1759965165341350161	CMakeFiles/MyExecutable.dir/src/main.cpp.o	5b21275a745715cc
+1	536	1759965165341928357	CMakeFiles/MyExecutable.dir/src/weapon_data.cpp.o	d633e14186103ce7
+1	39	1759966352325548749	build.ninja	31d08fc713eb42fd
+1	39	1759966352325548749	/home/nick/BloodborneCalcCpp/build/cmake_install.cmake	31d08fc713eb42fd
+1	88	1759966352336802887	BloodborneCalc	764c33d25f684dc7

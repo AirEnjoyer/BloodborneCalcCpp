@@ -1,0 +1,3 @@
+/home/nick/BloodborneCalcCpp/build/CMakeFiles/BloodborneCalc.dir
+/home/nick/BloodborneCalcCpp/build/CMakeFiles/edit_cache.dir
+/home/nick/BloodborneCalcCpp/build/CMakeFiles/rebuild_cache.dir
