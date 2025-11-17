@@ -169,7 +169,7 @@ void getVisceralDamage(int skill, int bloodLevel, float *initThrustDamage,
   *breakViscDamage = (130 + (130 * 1.3 * visceralSat)) * breakVisc;
 }
 
-void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
+void calcDamage(weapon *w, int weaponLevel, int userStr, int userSkill,
                 int userBloodtinge, int userArc, int bloodLevel) {
   int effectiveLevel = 0;
 
@@ -194,9 +194,9 @@ void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
   float weaponArcScale =
       w->returnScales(scales::bloodtinge)+ (w->returnScaleIncrease(scales::arcane) * effectiveLevel);
 
-  float basePhys = w->returnBase(bases::physical)+ (w->physInc * (effectiveLevel - 1));
-  float baseArc = w->returnBase(bases::arcane)+ (w->arcInc * (effectiveLevel - 1));
-  float baseBlood = w->returnBase(bases::bloodtinge)+ (w->bloodInc * (effectiveLevel - 1));
+  float basePhys = w->returnBase(bases::physical)+ (w->returnInc(bases::physical) * (effectiveLevel - 1));
+  float baseArc = w->returnBase(bases::arcane)+ (w->returnInc(bases::arcane) * (effectiveLevel - 1));
+  float baseBlood = w->returnBase(bases::blood)+ (w->returnInc(bases::blood) * (effectiveLevel - 1));
 
   if (weaponLevel == 10) {
     if (basePhys > 0)
@@ -216,7 +216,7 @@ void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
 
   float arcDamage = (baseArc + (weaponArcScale * arcSat));
 
-  if (w->returnName == "Holy Moonlight Sword") {
+  if (w->returnName() == "Holy Moonlight Sword") {
     float holyGSwordR1Arc = 0.50;
     float holyGSwordR2Arc = 0.65f;
     float holyGSwordChargedR2Arc = 0.9f;
@@ -266,7 +266,7 @@ void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
               << std::endl;
     std::cout << "Charged R2: "
               << (w->returnRegMult(regMults::chargeR2) * physDamage) + (w->returnRegMult(regMults::chargeR2) * arcDamage) +
-                     (w->chargeR2 * bloodDamage)
+                     (w->returnRegMult(regMults::chargeR2) * bloodDamage)
               << std::endl;
     std::cout << "Transform Attack: "
               << (w->returnRegMult(regMults::regTransformAttack) * physDamage) +
@@ -281,7 +281,7 @@ void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
     std::cout << "Transformed Tap R2: "
               << (w->returnTransformedMult(transformedMults::tapR2) * physDamage) +
                      (w->returnTransformedMult(transformedMults::tapR2) * arcDamage) +
-                     (w->returnTransformedMult(transformedMults::tapR2) * bloodDamagei_)
+                     (w->returnTransformedMult(transformedMults::tapR2) * bloodDamage)
               << std::endl;
     std::cout << "Transformed Charged R2: "
               << (w->returnName() == "Whirligig Saw"

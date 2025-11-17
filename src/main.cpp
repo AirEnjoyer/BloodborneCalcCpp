@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ostream>
 
-void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
+void calcDamage(weapon *w, int weaponLevel, int userStr, int userSkill,
                 int userBloodtinge, int userArc, int bloodLevel);
 
 int main() {
@@ -22,7 +22,7 @@ int main() {
   std::cout << "Choose a weapon by number" << std::endl;
 
   for (int i = 0; i < 25; i++) {
-    std::cout << i + 1 << "." << weapons[i].returnName << std::endl;
+    std::cout << i + 1 << "." << weapons[i].returnName() << std::endl;
   };
 
   std::cin >> userChoice;
