@@ -5,24 +5,26 @@
 		{
 			"compiler" : 
 			{
-				"id" : "GNU",
+				"id" : "Clang",
 				"implicit" : 
 				{
 					"includeDirectories" : 
 					[
-						"/usr/include/c++/15.2.1",
-						"/usr/include/c++/15.2.1/x86_64-pc-linux-gnu",
-						"/usr/include/c++/15.2.1/backward",
-						"/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include",
+						"/usr/include/c++/12",
+						"/usr/include/aarch64-linux-gnu/c++/12",
+						"/usr/include/c++/12/backward",
+						"/usr/lib/llvm-14/lib/clang/14.0.6/include",
 						"/usr/local/include",
-						"/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed",
+						"/usr/include/aarch64-linux-gnu",
 						"/usr/include"
 					],
 					"linkDirectories" : 
 					[
-						"/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1",
-						"/usr/lib",
-						"/lib"
+						"/usr/lib/gcc/aarch64-linux-gnu/12",
+						"/lib/aarch64-linux-gnu",
+						"/usr/lib/aarch64-linux-gnu",
+						"/lib",
+						"/usr/lib"
 					],
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : 
@@ -36,8 +38,8 @@
 						"gcc"
 					]
 				},
-				"path" : "/usr/bin/c++",
-				"version" : "15.2.1"
+				"path" : "/usr/bin/clang++",
+				"version" : "14.0.6"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 
@@ -53,10 +55,7 @@
 				"mpp",
 				"CPP",
 				"ixx",
-				"cppm",
-				"ccm",
-				"cxxm",
-				"c++m"
+				"cppm"
 			]
 		}
 	],

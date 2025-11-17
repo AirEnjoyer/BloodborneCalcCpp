@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/nick/BloodborneCalcCpp/build"
+			"value" : "/home/nick/cpp/BloodborneCalcCpp/build"
 		},
 		{
 			"name" : "BloodborneCalc_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/nick/BloodborneCalcCpp"
+			"value" : "/home/nick/cpp/BloodborneCalcCpp"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/nick/BloodborneCalcCpp/build"
+			"value" : "/home/nick/cpp/BloodborneCalcCpp/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -103,7 +103,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "4"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_CACHE_MINOR_VERSION",
@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : "25"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "2"
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -179,7 +179,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/c++"
+			"value" : "/usr/bin/clang++"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -191,11 +191,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+					"value" : "LLVM archiver"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ar"
+			"value" : "/usr/bin/llvm-ar-14"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -207,11 +207,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+					"value" : "Generate index for LLVM archive"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ranlib"
+			"value" : "/usr/bin/llvm-ranlib-14"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -310,18 +310,6 @@
 			"value" : "CMAKE_DLLTOOL-NOTFOUND"
 		},
 		{
-			"name" : "CMAKE_EDIT_COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to cache edit program executable."
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "/usr/bin/ccmake"
-		},
-		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
 			"properties" : 
 			[
@@ -414,22 +402,6 @@
 			"value" : ""
 		},
 		{
-			"name" : "CMAKE_EXPORT_BUILD_DATABASE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable/Disable output of build database during the build."
-				}
-			],
-			"type" : "BOOL",
-			"value" : ""
-		},
-		{
 			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
 			"properties" : 
 			[
@@ -439,11 +411,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Enable/Disable output of compile commands during generation."
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "BOOL",
-			"value" : ""
+			"type" : "UNINITIALIZED",
+			"value" : "ON"
 		},
 		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
@@ -467,7 +439,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/nick/BloodborneCalcCpp/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/nick/cpp/BloodborneCalcCpp/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -527,7 +499,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/nick/BloodborneCalcCpp"
+			"value" : "/home/nick/cpp/BloodborneCalcCpp"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -551,7 +523,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "0"
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -568,18 +540,6 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "/usr/bin/ld"
-		},
-		{
-			"name" : "CMAKE_LIST_FILE_NAME",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Name of CMakeLists files to read"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "CMakeLists.txt"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -750,18 +710,6 @@
 			"value" : "1"
 		},
 		{
-			"name" : "CMAKE_PROJECT_COMPAT_VERSION",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : ""
-		},
-		{
 			"name" : "CMAKE_PROJECT_DESCRIPTION",
 			"properties" : 
 			[
@@ -839,7 +787,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/share/cmake"
+			"value" : "/usr/share/cmake-3.25"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -963,7 +911,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the archiver during the creation of static libraries during all build types."
+					"value" : "Flags used by the linker during the creation of static libraries during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -979,7 +927,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the archiver during the creation of static libraries during DEBUG builds."
+					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -995,7 +943,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the archiver during the creation of static libraries during MINSIZEREL builds."
+					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -1011,7 +959,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the archiver during the creation of static libraries during RELEASE builds."
+					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -1027,7 +975,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the archiver during the creation of static libraries during RELWITHDEBINFO builds."
+					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -1048,22 +996,6 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "/usr/bin/strip"
-		},
-		{
-			"name" : "CMAKE_TAPI",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "CMAKE_TAPI-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_UNAME",
@@ -1092,6 +1024,18 @@
 			],
 			"type" : "BOOL",
 			"value" : "FALSE"
+		},
+		{
+			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "linker supports push/pop state"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "TRUE"
 		}
 	],
 	"kind" : "cache",

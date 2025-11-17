@@ -1,7 +1,61 @@
-#include "weapon.h"
+#include "weapon.hpp"
 #include <cmath>
 #include <iostream>
 #include <string>
+
+namespace scales
+{
+    enum indexes
+    {
+        strength,
+        skill,
+        bloodtinge,
+        arcane
+    };
+}
+
+namespace bases 
+{
+    enum indexes 
+    {
+        physical,
+        arcane,
+        blood
+    };
+}
+
+namespace finals
+{
+    enum indexes
+    {
+        physical,
+        arcane,
+        blood
+    };
+}
+
+namespace regMults
+{
+    enum indexes
+    {
+        r1,
+        tapR2,
+        chargeR2,
+        regTransformAttack
+    };
+}
+
+namespace transformedMults
+{
+    enum indexes
+    {
+        r1,
+        tapR2,
+        chargeR2,
+        l2,
+        transformedTransformAttack
+    };
+}
 
 float getSat(int inputStat) {
   float sat;
@@ -115,7 +169,7 @@ void getVisceralDamage(int skill, int bloodLevel, float *initThrustDamage,
   *breakViscDamage = (130 + (130 * 1.3 * visceralSat)) * breakVisc;
 }
 
-void calcDamage(const Weapon *w, int weaponLevel, int userStr, int userSkill,
+void calcDamage(const weapon *w, int weaponLevel, int userStr, int userSkill,
                 int userBloodtinge, int userArc, int bloodLevel) {
   int effectiveLevel = 0;
 
@@ -132,25 +186,25 @@ void calcDamage(const Weapon *w, int weaponLevel, int userStr, int userSkill,
   float bloodtingeSat = getSat(userBloodtinge);
   float arcSat = getSat(userArc);
 
-  float weaponStrScale = w->strScale + (w->strScaleIncrease * effectiveLevel);
+  float weaponStrScale = w->returnScales(scales::strength)+ (w->returnScaleIncrease(scales::strength) * effectiveLevel);
   float weaponSkillScale =
-      w->skillScale + (w->skillScaleIncrease * effectiveLevel);
+      w->returnScales(scales::skill) + (w->returnScaleIncrease(scales::skill) * effectiveLevel);
   float weaponBloodtingeScale =
-      w->bloodtingeScale + (w->bloodtingeScaleIncrease * effectiveLevel);
+      w->returnScales(scales::bloodtinge) + (w->returnScaleIncrease(scales::bloodtinge) * effectiveLevel);
   float weaponArcScale =
-      w->arcaneScale + (w->arcaneScaleIncrease * effectiveLevel);
+      w->returnScales(scales::bloodtinge)+ (w->returnScaleIncrease(scales::arcane) * effectiveLevel);
 
-  float basePhys = w->basePhys + (w->physInc * (effectiveLevel - 1));
-  float baseBlood = w->baseBlood + (w->bloodInc * (effectiveLevel - 1));
-  float baseArc = w->baseArc + (w->arcInc * (effectiveLevel - 1));
+  float basePhys = w->returnBase(bases::physical)+ (w->physInc * (effectiveLevel - 1));
+  float baseArc = w->returnBase(bases::arcane)+ (w->arcInc * (effectiveLevel - 1));
+  float baseBlood = w->returnBase(bases::bloodtinge)+ (w->bloodInc * (effectiveLevel - 1));
 
   if (weaponLevel == 10) {
     if (basePhys > 0)
-      basePhys += w->physFinal;
+      basePhys += w->returnFinals(finals::physical);
     if (baseBlood > 0) {
-      baseBlood += w->bloodFinal;
+      baseBlood += w->returnFinals(finals::blood);
       if (baseArc > 0) {
-        baseArc += w->arcFinal;
+        baseArc += w->returnFinals(finals::arcane);
       }
     }
   }
@@ -162,7 +216,7 @@ void calcDamage(const Weapon *w, int weaponLevel, int userStr, int userSkill,
 
   float arcDamage = (baseArc + (weaponArcScale * arcSat));
 
-  if (std::string(w->name) == "Holy Moonlight Sword") {
+  if (w->returnName == "Holy Moonlight Sword") {
     float holyGSwordR1Arc = 0.50;
     float holyGSwordR2Arc = 0.65f;
     float holyGSwordChargedR2Arc = 0.9f;
@@ -173,79 +227,79 @@ void calcDamage(const Weapon *w, int weaponLevel, int userStr, int userSkill,
     float holyGSwordL2 = 1.5f;
     float transformedHolyGSwordTransformArc = 1.3f;
 
-    std::cout << "R1: " << physDamage * w->r1 + arcDamage * holyGSwordR1Arc
+    std::cout << "R1: " << physDamage * w->returnRegMult(regMults::r1) + arcDamage * holyGSwordR1Arc
               << std::endl
-              << "R2: " << physDamage * w->tapR2 + arcDamage * holyGSwordR2Arc
+              << "R2: " << physDamage * w->returnRegMult(regMults::tapR2) + arcDamage * holyGSwordR2Arc
               << std::endl
               << "Charged R2 "
-              << physDamage * w->chargeR2 + arcDamage * holyGSwordChargedR2Arc
+              << physDamage * w->returnRegMult(regMults::chargeR2) + arcDamage * holyGSwordChargedR2Arc
               << std::endl
               << "Transform Attack: "
-              << physDamage * w->regTransformAttack +
+              << physDamage * w->returnRegMult(regMults::regTransformAttack) +
                      arcDamage * holyGSwordTransformArc
               << std::endl
               << "Transformed R1:"
-              << physDamage * w->transformedR1 +
+              << physDamage * w->returnTransformedMult(transformedMults::r1)+
                      arcDamage * transformedHolyGSwordR1Arc
               << std::endl
               << "Transformed R2: "
-              << physDamage * w->transformedTapR2 +
+              << physDamage * w->returnTransformedMult(transformedMults::tapR2)+
                      arcDamage * transformedHolyGSwordR2Arc
               << "Transformed Charged R2: "
-              << physDamage * w->transformedChargeR2 +
+              << physDamage * w->returnTransformedMult(transformedMults::chargeR2) +
                      arcDamage * transformedHolyGSwordR1Arc
               << std::endl
-              << "L2: " << physDamage * w->l2 + arcDamage * holyGSwordL2
+              << "L2: " << physDamage * w->returnTransformedMult(transformedMults::l2) + arcDamage * holyGSwordL2
               << std::endl
               << "Transformed transform attack: "
-              << physDamage * w->transformedTransformAttack +
+              << physDamage * w->returnTransformedMult(transformedMults::transformedTransformAttack)+
                      arcDamage * transformedHolyGSwordTransformArc
               << std::endl;
   } else {
     std::cout << "R1: "
-              << (w->r1 * physDamage) + (w->r1 * arcDamage) +
-                     (w->r1 * bloodDamage)
+              << (w->returnRegMult(regMults::r1) * physDamage) + (w->returnRegMult(regMults::r1)* arcDamage) +
+                     (w->returnRegMult(regMults::r1) * bloodDamage)
               << std::endl;
     std::cout << "R2: "
-              << (w->tapR2 * physDamage) + (w->tapR2 * arcDamage) +
-                     (w->tapR2 * bloodDamage)
+              << (w->returnRegMult(regMults::tapR2) * physDamage) + (w->returnRegMult(regMults::tapR2) * arcDamage) +
+                     (w->returnRegMult(regMults::tapR2) * bloodDamage)
               << std::endl;
     std::cout << "Charged R2: "
-              << (w->chargeR2 * physDamage) + (w->chargeR2 * arcDamage) +
+              << (w->returnRegMult(regMults::chargeR2) * physDamage) + (w->returnRegMult(regMults::chargeR2) * arcDamage) +
                      (w->chargeR2 * bloodDamage)
               << std::endl;
     std::cout << "Transform Attack: "
-              << (w->regTransformAttack * physDamage) +
-                     (w->regTransformAttack * arcDamage) +
-                     (w->regTransformAttack * bloodDamage)
+              << (w->returnRegMult(regMults::regTransformAttack) * physDamage) +
+                     (w->returnRegMult(regMults::regTransformAttack) * arcDamage) +
+                     (w->returnRegMult(regMults::regTransformAttack) * bloodDamage)
               << std::endl;
     std::cout << "Transformed R1: "
-              << (w->transformedR1 * physDamage) +
-                     (w->transformedR1 * arcDamage) +
-                     (w->transformedR1 * bloodDamage)
+              << (w->returnTransformedMult(transformedMults::r1) * physDamage) +
+                     (w->returnTransformedMult(transformedMults::r1) * arcDamage) +
+                     (w->returnTransformedMult(transformedMults::r1) * bloodDamage)
               << std::endl;
     std::cout << "Transformed Tap R2: "
-              << (w->transformedTapR2 * physDamage) +
-                     (w->transformedTapR2 * arcDamage) +
-                     (w->transformedTapR2 * bloodDamage)
+              << (w->returnTransformedMult(transformedMults::tapR2) * physDamage) +
+                     (w->returnTransformedMult(transformedMults::tapR2) * arcDamage) +
+                     (w->returnTransformedMult(transformedMults::tapR2) * bloodDamagei_)
               << std::endl;
     std::cout << "Transformed Charged R2: "
-              << (w->name == "Whirligig Saw"
-                      ? ((w->transformedChargeR2 * 1.8) +
-                         pow((w->transformedChargeR2 * 0.3), 3)) *
+              << (w->returnName() == "Whirligig Saw"
+                      ? ((w->returnTransformedMult(transformedMults::chargeR2) * 1.8) +
+                         pow((w->returnTransformedMult(transformedMults::chargeR2) * 0.3), 3)) *
                             physDamage
-                      : (w->transformedChargeR2 * physDamage) +
-                            (w->transformedChargeR2 * arcDamage) +
-                            (w->transformedChargeR2 * bloodDamage))
+                      : (w->returnTransformedMult(transformedMults::chargeR2) * physDamage) +
+                            (w->returnTransformedMult(transformedMults::chargeR2) * arcDamage) +
+                            (w->returnTransformedMult(transformedMults::chargeR2) * bloodDamage))
               << std::endl;
     std::cout << "L2: "
-              << (w->l2 * physDamage) + (w->l2 * arcDamage) +
-                     (w->l2 * bloodDamage)
+              << (w->returnTransformedMult(transformedMults::l2) * physDamage) + (w->returnTransformedMult(transformedMults::l2) * arcDamage) +
+                     (w->returnTransformedMult(transformedMults::l2) * bloodDamage)
               << std::endl;
     std::cout << "Transformed Transform Attack: "
-              << (w->transformedTransformAttack * physDamage) +
-                     (w->transformedTransformAttack * arcDamage) +
-                     (w->transformedTransformAttack * bloodDamage)
+              << (w->returnTransformedMult(transformedMults::transformedTransformAttack) * physDamage) +
+                     (w->returnTransformedMult(transformedMults::transformedTransformAttack) * arcDamage) +
+                     (w->returnTransformedMult(transformedMults::transformedTransformAttack) * bloodDamage)
               << std::endl
               << std::flush;
     std::string dummyInput;

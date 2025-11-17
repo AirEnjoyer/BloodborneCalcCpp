@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/nick/cpp/BloodborneCalcCpp/build",
+  "command": "/usr/bin/clang++ -I/home/nick/cpp/BloodborneCalcCpp/include -std=gnu++20 -o CMakeFiles/BloodborneCalc.dir/src/main.cpp.o -c /home/nick/cpp/BloodborneCalcCpp/src/main.cpp",
+  "file": "/home/nick/cpp/BloodborneCalcCpp/src/main.cpp"
+},
+{
+  "directory": "/home/nick/cpp/BloodborneCalcCpp/build",
+  "command": "/usr/bin/clang++ -I/home/nick/cpp/BloodborneCalcCpp/include -std=gnu++20 -o CMakeFiles/BloodborneCalc.dir/src/weapon_data.cpp.o -c /home/nick/cpp/BloodborneCalcCpp/src/weapon_data.cpp",
+  "file": "/home/nick/cpp/BloodborneCalcCpp/src/weapon_data.cpp"
+},
+{
+  "directory": "/home/nick/cpp/BloodborneCalcCpp/build",
+  "command": "/usr/bin/clang++ -I/home/nick/cpp/BloodborneCalcCpp/include -std=gnu++20 -o CMakeFiles/BloodborneCalc.dir/src/damage.cpp.o -c /home/nick/cpp/BloodborneCalcCpp/src/damage.cpp",
+  "file": "/home/nick/cpp/BloodborneCalcCpp/src/damage.cpp"
+}
+]

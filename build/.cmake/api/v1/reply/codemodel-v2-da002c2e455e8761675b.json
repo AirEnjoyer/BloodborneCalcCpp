@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BloodborneCalc::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BloodborneCalc-c64a059ce4499ddec82c.json",
+					"jsonFile" : "target-BloodborneCalc-ca120a99a2cfacd282a5.json",
 					"name" : "BloodborneCalc",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/nick/BloodborneCalcCpp/build",
-		"source" : "/home/nick/BloodborneCalcCpp"
+		"build" : "/home/nick/cpp/BloodborneCalcCpp/build",
+		"source" : "/home/nick/cpp/BloodborneCalcCpp"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 8
+		"minor" : 4
 	}
 }
